@@ -1,0 +1,31 @@
+variable "s3bucket" {
+    description = "inserting vaule"
+    type = string
+    default = "makbucket1997"  
+}
+
+variable "tags" {
+    description = "inserting value"
+    type = map(string)
+    default = {
+      "environment" = "Dev"
+    
+    }
+  
+}
+
+locals {
+  s3bucket  = "${var.s3bucket}-1997"
+
+  tags = var.tags
+}
+
+resource "aws_s3_bucket" "dev" {
+    bucket = local.s3bucket
+  
+}
+
+# output "makbucket1997" {
+#     description = "s3bucket"
+#     value = 
+  
