@@ -1,0 +1,9 @@
+resource "aws_s3_bucket" "dev" {
+    bucket = "aamer1231997"
+    provider =aws.devops  
+}
+
+resource "aws_s3_bucket" "dev2" {
+    bucket = "ammu1231997"
+    provider =aws.cloud  
+}
