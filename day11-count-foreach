@@ -1,0 +1,29 @@
+variable "ami" {
+  type    = string
+  default = "ami-08970251d20e940b0"
+}
+
+variable "instance_type" {
+  type    = string
+  default = "t2.micro"
+}
+
+variable "hyderabad" {
+  type    = list(string)
+  default = ["hyd11", "hyd22"]
+}
+variable "subnet_id" {
+    type = string
+    default = "subnet-06e52282c552d43aa"
+  
+}
+resource "aws_instance" "sandbox" {
+  ami           = var.ami
+  instance_type = var.instance_type
+  for_each      = toset(var.hyderabad)
+  subnet_id = var.subnet_id
+#   count = length(var.sandboxes)
+  tags = {
+    Name = each.value # for a set, each.value and each.key is the same
+  }
+}
